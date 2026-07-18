@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!-- 2026 LLM 특강 관리자 페이지 — Apps Script(HtmlService)로만 제공되는 비공개 페이지. google.script.run으로 서버 호출 -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<base target="_top" />
+<style>
+  :root{ --primary:#800000; --secondary:#9fa0a0; --accent:#ffab40; --ink:#222; --soft:#faf6f6; --line:#e7dede; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--ink);background:var(--soft);line-height:1.5}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+
+  .gate{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#800000,#3a0000)}
+  .gate .box{background:#fff;border-radius:14px;padding:34px 34px 28px;width:min(92vw,380px);text-align:center;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+  .gate h1{font-size:18px;color:var(--primary);margin-bottom:4px}
+  .gate p{font-size:12.5px;color:#888;margin-bottom:20px}
+  .gate input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:15px;text-align:center;margin-bottom:12px;outline:none}
+  .gate input:focus{border-color:var(--primary)}
+  .gate button{width:100%;padding:12px;border:none;border-radius:8px;background:var(--primary);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+  .gate button:hover{background:#6a0000}
+  .gate .err{color:#c0392b;font-size:12.5px;margin-top:10px;min-height:16px}
+
+  .app{display:none;padding:26px 0 60px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+  .topbar h1{font-size:20px;color:var(--primary)}
+  .topbar .tools{display:flex;gap:8px}
+  .btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+  .btn:hover{border-color:var(--primary);color:var(--primary)}
+
+  h2.sec{font-size:15px;color:var(--primary);margin:26px 0 10px}
+  .sumgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  @media(max-width:720px){.sumgrid{grid-template-columns:repeat(2,1fr)}}
+  .sumcard{background:#fff;border-radius:10px;padding:16px 14px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .sumcard .v{font-size:24px;font-weight:900;color:var(--primary);line-height:1.2}
+  .sumcard .v.full{color:#c0392b}
+  .sumcard .k{font-size:12px;color:#888;margin-top:4px}
+
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+  thead th{background:var(--primary);color:#fff;font-weight:600;font-size:12.5px}
+  tbody tr:hover{background:#fcf8f8}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
+  .pill.confirmed{background:#e7f5ec;color:#1e7e44}
+  .pill.apply{background:#fff4e2;color:#b5740a}
+  .pill.wait{background:#f0f0f0;color:#666}
+  .mini{border:none;border-radius:6px;padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+  .mini.confirm{background:#1e7e44;color:#fff}
+  .mini.confirm:hover{background:#166335}
+  .mini.undo{background:#eee;color:#555}
+  .mini.undo:hover{background:#e0e0e0}
+  .mini:disabled{opacity:.55;cursor:default}
+  .exp{font-size:11px;color:#888}
+
+  .modalbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:10;align-items:center;justify-content:center}
+  .modalbg.open{display:flex}
+  .modal{background:#fff;border-radius:12px;padding:24px 26px 20px;width:min(92vw,360px);box-shadow:0 14px 40px rgba(0,0,0,.3)}
+  .modal h3{font-size:16px;color:var(--primary);margin-bottom:4px}
+  .modal .who{font-size:12.5px;color:#888;margin-bottom:16px}
+  .modal label{display:block;font-size:12px;font-weight:700;color:#555;margin:10px 0 4px}
+  .modal select,.modal input{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:14px;font-family:inherit;outline:none;background:#fff}
+  .modal select:focus,.modal input:focus{border-color:var(--primary)}
+  .modal .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+  .modal .acts .primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .modal .acts .primary:hover{background:#6a0000;color:#fff}
+  .modal .err{color:#c0392b;font-size:12px;margin-top:8px;min-height:15px}
+  td.selcol,th.selcol{width:34px;text-align:center;padding-left:8px;padding-right:4px}
+  .rowsel{width:16px;height:16px;accent-color:var(--primary);cursor:pointer;vertical-align:middle}
+  .selbar{display:none;align-items:center;gap:8px;margin:0 0 10px;padding:8px 12px;background:#fff4e2;border:1px solid #f0d9ab;border-radius:8px;font-size:13px}
+  .selbar.on{display:flex}
+  .selbar .cnt{font-weight:700;color:#8a5a00;margin-right:4px}
+  .btn.danger{color:#b03030;border-color:#e7b3b3}
+  .btn.danger:hover{background:#fdecec;border-color:#b03030;color:#b03030}
+  .btn:disabled{opacity:.45;cursor:default}
+  .btn:disabled:hover{border-color:var(--line);color:inherit}
+  .listhead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .listhead h2.sec{margin-bottom:0}
+  .search{position:relative}
+  .search input{width:230px;padding:8px 30px 8px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-family:inherit;outline:none;background:#fff}
+  .search input:focus{border-color:var(--primary)}
+  .search .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:none;background:none;color:#999;font-size:14px;cursor:pointer;display:none;padding:2px}
+  .search.has .clear{display:block}
+  .filterbar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+  .filterbar button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:12.5px;cursor:pointer;font-family:inherit}
+  .filterbar button.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .empty{color:#999;font-size:13px;padding:18px 4px}
+  .note{color:#888;font-size:12px;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <form class="box" id="loginForm" autocomplete="off">
+    <h1>LLM 특강 관리자</h1>
+    <p>관리자 비밀번호를 입력하세요.</p>
+    <input type="password" id="pw" placeholder="비밀번호" autocomplete="current-password" />
+    <button type="submit" id="loginBtn">로그인</button>
+    <div class="err" id="loginErr"></div>
+  </form>
+</div>
+
+<div class="app" id="app">
+  <div class="wrap">
+    <div class="topbar">
+      <h1>2026 LLM 특강 · 접수 현황</h1>
+      <div class="tools">
+        <button class="btn" id="refreshBtn">새로고침</button>
+        <button class="btn" id="logoutBtn">로그아웃</button>
+      </div>
+    </div>
+
+    <h2 class="sec">현황 요약</h2>
+    <div class="sumgrid" id="sumgrid"></div>
+    <p class="note">참석확정 인원이 정원(15명)에 도달하면 잔여석이 0이 되고, 이후 신청자는 자동으로 대기자로 등록됩니다. 확정을 취소하거나 행을 삭제해 확정 인원이 정원 아래로 내려가면 이후 신청자는 다시 신청접수 상태로 들어옵니다 (기존 대기자의 확정 전환은 관리자가 수동으로 처리).</p>
+
+    <div class="listhead">
+      <h2 class="sec">신청자 리스트</h2>
+      <div class="search" id="searchWrap">
+        <input type="text" id="searchBox" placeholder="이름 검색" />
+        <button type="button" class="clear" id="searchClear" aria-label="검색어 지우기">×</button>
+      </div>
+    </div>
+    <div class="filterbar" id="filterbar"></div>
+    <div class="selbar" id="selbar">
+      <span class="cnt" id="selCount"></span>
+      <button class="btn" type="button" id="selEdit">수정</button>
+      <button class="btn danger" type="button" id="selDel">삭제</button>
+      <button class="btn" type="button" id="selClear">선택 해제</button>
+    </div>
+    <table id="listTbl">
+      <thead><tr>
+        <th class="selcol"></th><th>신청일시</th><th>성명</th><th>소속 / 직위</th><th>이메일</th><th>연락처</th>
+        <th>AI 경험</th><th>상태</th><th>처리</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="listEmpty" style="display:none">신청자가 없습니다.</div>
+  </div>
+</div>
+
+<div class="modalbg" id="editModal">
+  <div class="modal">
+    <h3>신청 정보 수정</h3>
+    <div class="who" id="editWho"></div>
+    <label for="e_name">성명</label>
+    <input type="text" id="e_name" />
+    <label for="e_org">소속 기관</label>
+    <input type="text" id="e_org" />
+    <label for="e_title">직위</label>
+    <input type="text" id="e_title" />
+    <label for="e_email">이메일</label>
+    <input type="email" id="e_email" />
+    <label for="e_phone">연락처</label>
+    <input type="tel" id="e_phone" />
+    <label for="e_exp">생성형 AI 사용 경험</label>
+    <select id="e_exp">
+      <option value="처음이다">처음이다</option>
+      <option value="써 본 적 있다">써 본 적 있다</option>
+      <option value="업무에 자주 쓴다">업무에 자주 쓴다</option>
+    </select>
+    <label for="e_note">문의</label>
+    <input type="text" id="e_note" />
+    <div class="acts">
+      <button class="btn" type="button" id="editCancel">취소</button>
+      <button class="btn primary" type="button" id="editSave">저장</button>
+    </div>
+    <div class="err" id="editErr"></div>
+  </div>
+</div>
+
+<script>
+let PW = "";
+let DATA = { summary: {}, list: [] };
+let FILTER = "전체";
+let SEARCH = "";
+let SELECTED = {};
+const STATUSES = ["전체", "신청접수", "참석확정", "대기"];
+
+// google.script.run 을 Promise 로 감싸 호출
+function run(fn, args) {
+  args = args || [];
+  return new Promise(function (resolve, reject) {
+    var runner = google.script.run.withSuccessHandler(resolve).withFailureHandler(reject);
+    runner[fn].apply(runner, args);
+  });
+}
+
+// 로그인 유지 — 브라우저 저장소에 비밀번호를 보관해 새로고침 시 재입력 없이 자동 로그인
+function savedPw() { try { return localStorage.getItem("llm_admin_pw") || ""; } catch (e) { return ""; } }
+function savePw(pw) { try { localStorage.setItem("llm_admin_pw", pw); } catch (e) {} }
+function clearPw() { try { localStorage.removeItem("llm_admin_pw"); } catch (e) {} }
+
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var errEl = document.getElementById("loginErr");
+  var btn = document.getElementById("loginBtn");
+  PW = document.getElementById("pw").value;
+  if (!PW) { errEl.textContent = "비밀번호를 입력하세요."; return; }
+  btn.disabled = true; btn.textContent = "확인 중…"; errEl.textContent = "";
+  run("adminList", [PW]).then(function (j) {
+    if (j && j.ok) { savePw(PW); enterApp(j); }
+    else if (j && j.error === "auth") { errEl.textContent = "비밀번호가 올바르지 않습니다."; }
+    else { errEl.textContent = "오류: " + ((j && j.error) || "알 수 없음"); }
+  }).catch(function () {
+    errEl.textContent = "서버에 연결할 수 없습니다.";
+  }).then(function () {
+    btn.disabled = false; btn.textContent = "로그인";
+  });
+});
+
+// 저장된 비밀번호로 자동 로그인 시도
+(function () {
+  var saved = savedPw();
+  if (!saved) return;
+  PW = saved;
+  var errEl = document.getElementById("loginErr");
+  errEl.textContent = "자동 로그인 중…";
+  run("adminList", [PW]).then(function (j) {
+    if (j && j.ok) { enterApp(j); }
+    else { clearPw(); PW = ""; errEl.textContent = ""; }
+  }).catch(function () {
+    errEl.textContent = "서버에 연결할 수 없습니다.";
+  });
+})();
+
+function enterApp(j) {
+  document.getElementById("gate").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  render(j);
+}
+
+function reload() {
+  run("adminList", [PW]).then(function (j) {
+    if (j && j.ok) render(j);
+    else if (j && j.error === "auth") logout();
+  });
+}
+
+function render(j) {
+  DATA = j;
+  var s = j.summary || {};
+  var g = document.getElementById("sumgrid");
+  var remainCls = (s.잔여 === 0) ? "v full" : "v";
+  var remainTxt = (s.잔여 === 0) ? "0 (마감)" : (s.잔여 == null ? "-" : s.잔여);
+  g.innerHTML =
+      '<div class="sumcard"><div class="v">' + (s.정원 == null ? "-" : s.정원) + '</div><div class="k">정원</div></div>'
+    + '<div class="sumcard"><div class="v">' + ((s.신청접수 || 0) + (s.참석확정 || 0) + (s.대기 || 0)) + '</div><div class="k">전체 신청</div></div>'
+    + '<div class="sumcard"><div class="v">' + (s.신청접수 || 0) + '</div><div class="k">신청접수 (미확정)</div></div>'
+    + '<div class="sumcard"><div class="v">' + (s.참석확정 || 0) + '</div><div class="k">참석확정</div></div>'
+    + '<div class="sumcard"><div class="' + remainCls + '">' + remainTxt + '</div><div class="k">잔여석 · 대기 ' + (s.대기 || 0) + '</div></div>';
+  var fb = document.getElementById("filterbar");
+  fb.innerHTML = "";
+  STATUSES.forEach(function (name) {
+    var b = document.createElement("button");
+    b.textContent = name;
+    if (name === FILTER) b.className = "on";
+    b.addEventListener("click", function () { FILTER = name; render(DATA); });
+    fb.appendChild(b);
+  });
+  renderList();
+}
+
+function renderList() {
+  var tb = document.querySelector("#listTbl tbody");
+  var empty = document.getElementById("listEmpty");
+  tb.innerHTML = "";
+  var q = SEARCH.trim().toLowerCase();
+  var rows = DATA.list.filter(function (x) {
+    if (FILTER !== "전체" && x.상태 !== FILTER) return false;
+    if (!q) return true;
+    return String(x.성명 || "").toLowerCase().indexOf(q) !== -1;
+  });
+  if (rows.length === 0) { empty.style.display = "block"; empty.textContent = q ? "'" + SEARCH.trim() + "' 검색 결과가 없습니다." : "신청자가 없습니다."; updateSelbar(); return; }
+  empty.style.display = "none";
+  // 리스트에 없는 접수ID는 선택 목록에서 정리
+  var alive = {};
+  DATA.list.forEach(function (x) { alive[x.id] = true; });
+  Object.keys(SELECTED).forEach(function (id) { if (!alive[id]) delete SELECTED[id]; });
+
+  rows.forEach(function (x) {
+    var tr = document.createElement("tr");
+    var pill, action;
+    if (x.상태 === "참석확정") {
+      pill = '<span class="pill confirmed">참석확정</span>';
+      action = '<button class="mini undo" data-act="undo" data-row="' + x.row + '">확정취소</button>';
+    } else if (x.상태 === "대기") {
+      pill = '<span class="pill wait">대기</span>';
+      action = '<button class="mini confirm" data-act="confirm" data-row="' + x.row + '">참석확정</button>';
+    } else {
+      pill = '<span class="pill apply">신청접수</span>';
+      action = '<button class="mini confirm" data-act="confirm" data-row="' + x.row + '">참석확정</button>';
+    }
+    var sel = '<input type="checkbox" class="rowsel" data-id="' + esc(x.id) + '"' + (SELECTED[x.id] ? ' checked' : '') + ' />';
+    var orgCell = esc(x.소속) + (x.직위 ? '<div class="exp">' + esc(x.직위) + '</div>' : '');
+    tr.innerHTML = '<td class="selcol">' + sel + "</td><td>" + x.신청일시 + "</td><td>" + esc(x.성명) + "</td><td>" + orgCell
+      + "</td><td>" + esc(x.이메일) + "</td><td>" + esc(x.연락처) + "</td><td>" + esc(x.AI사용경험)
+      + "</td><td>" + pill + "</td><td>" + action + "</td>";
+    tb.appendChild(tr);
+  });
+  updateSelbar();
+}
+
+// 리스트의 특정 행 데이터를 로컬에서 즉시 갱신해 화면에 바로 반영 (서버 재조회 전 낙관적 업데이트)
+function applyLocal(row, changes) {
+  DATA.list.forEach(function (x) {
+    if (x.row === row) { for (var k in changes) x[k] = changes[k]; }
+  });
+  renderList();
+}
+
+function nowStr() {
+  function p(n) { return (n < 10 ? "0" : "") + n; }
+  var d = new Date();
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + " " + p(d.getHours()) + ":" + p(d.getMinutes());
+}
+
+// 참석확정/확정취소 — 이벤트 위임
+document.querySelector("#listTbl tbody").addEventListener("click", function (e) {
+  var btn = e.target.closest("button[data-act]");
+  if (!btn) return;
+  var act = btn.getAttribute("data-act");
+  var row = parseInt(btn.getAttribute("data-row"), 10);
+  if (act === "confirm") confirmAttend(row);
+  else unconfirm(row);
+});
+
+// ===== 행 선택 토글 + 수정/삭제 액션 바 =====
+document.querySelector("#listTbl tbody").addEventListener("change", function (e) {
+  var cb = e.target.closest("input.rowsel");
+  if (!cb) return;
+  var id = cb.getAttribute("data-id");
+  if (cb.checked) SELECTED[id] = true; else delete SELECTED[id];
+  updateSelbar();
+});
+
+function selectedIds() { return Object.keys(SELECTED); }
+
+function updateSelbar() {
+  var ids = selectedIds();
+  document.getElementById("selbar").classList.toggle("on", ids.length > 0);
+  document.getElementById("selCount").textContent = ids.length + "건 선택";
+  document.getElementById("selEdit").disabled = ids.length !== 1;
+}
+
+document.getElementById("selClear").addEventListener("click", function () {
+  SELECTED = {};
+  renderList();
+});
+
+document.getElementById("selDel").addEventListener("click", function () {
+  var ids = selectedIds();
+  if (!ids.length) return;
+  var names = DATA.list.filter(function (x) { return SELECTED[x.id]; }).map(function (x) { return x.성명; });
+  if (!confirm("선택한 " + ids.length + "건(" + names.join(", ") + ")을 완전히 삭제합니다.\n삭제하면 되돌릴 수 없습니다. 계속할까요?")) return;
+  run("adminDeleteMany", [PW, ids]).then(function (j) {
+    if (j && j.ok) {
+      DATA.list = DATA.list.filter(function (x) { return !SELECTED[x.id]; });
+      SELECTED = {};
+      renderList();
+      reload();
+    } else alert("삭제 실패: " + ((j && j.error) || ""));
+  });
+});
+
+// ===== 신청 정보 수정 모달 =====
+var EDIT_ID = "";
+
+document.getElementById("selEdit").addEventListener("click", function () {
+  var ids = selectedIds();
+  if (ids.length !== 1) return;
+  var x = null;
+  DATA.list.forEach(function (it) { if (it.id === ids[0]) x = it; });
+  if (!x) return;
+  EDIT_ID = x.id;
+  document.getElementById("editWho").textContent = "접수ID: " + x.id + " · 신청일시 " + x.신청일시;
+  document.getElementById("e_name").value = x.성명 || "";
+  document.getElementById("e_org").value = x.소속 || "";
+  document.getElementById("e_title").value = x.직위 || "";
+  document.getElementById("e_email").value = x.이메일 || "";
+  document.getElementById("e_phone").value = x.연락처 || "";
+  document.getElementById("e_exp").value = x.AI사용경험 || "처음이다";
+  document.getElementById("e_note").value = x.문의 || "";
+  document.getElementById("editErr").textContent = "";
+  document.getElementById("editModal").classList.add("open");
+});
+
+function closeEditModal() { document.getElementById("editModal").classList.remove("open"); }
+document.getElementById("editCancel").addEventListener("click", closeEditModal);
+document.getElementById("editModal").addEventListener("click", function (e) {
+  if (e.target === this) closeEditModal();
+});
+
+document.getElementById("editSave").addEventListener("click", function () {
+  var btn = this;
+  var errEl = document.getElementById("editErr");
+  var data = {
+    성명: document.getElementById("e_name").value.trim(),
+    소속: document.getElementById("e_org").value.trim(),
+    직위: document.getElementById("e_title").value.trim(),
+    이메일: document.getElementById("e_email").value.trim(),
+    연락처: document.getElementById("e_phone").value.trim(),
+    AI사용경험: document.getElementById("e_exp").value,
+    문의: document.getElementById("e_note").value.trim(),
+  };
+  if (!data.성명 || !data.이메일) { errEl.textContent = "성명·이메일은 비울 수 없습니다."; return; }
+  btn.disabled = true; btn.textContent = "저장 중…"; errEl.textContent = "";
+  run("adminUpdate", [PW, EDIT_ID, data]).then(function (j) {
+    if (j && j.ok) {
+      DATA.list.forEach(function (x) { if (x.id === EDIT_ID) { for (var k in data) x[k] = data[k]; } });
+      renderList();
+      closeEditModal();
+      reload();
+    } else {
+      errEl.textContent = "저장 실패: " + ((j && j.error) || "알 수 없음");
+    }
+  }).catch(function () {
+    errEl.textContent = "서버에 연결할 수 없습니다.";
+  }).then(function () {
+    btn.disabled = false; btn.textContent = "저장";
+  });
+});
+
+function confirmAttend(row) {
+  if (!confirm("참석확정 처리하고 신청자에게 '참석이 확정되었습니다' 메일을 보냅니다. 계속할까요?")) return;
+  run("adminConfirm", [PW, row]).then(function (j) {
+    if (j && j.ok) { applyLocal(row, { 상태: "참석확정", 참석확정일시: nowStr() }); reload(); }
+    else alert("처리 실패: " + ((j && j.error) || ""));
+  });
+}
+
+function unconfirm(row) {
+  if (!confirm("참석확정을 취소하고 '신청접수' 상태로 되돌립니다. (메일은 발송되지 않습니다)")) return;
+  run("adminUnconfirm", [PW, row]).then(function (j) {
+    if (j && j.ok) { applyLocal(row, { 상태: "신청접수", 참석확정일시: "" }); reload(); }
+    else alert("처리 실패: " + ((j && j.error) || ""));
+  });
+}
+
+function logout() { clearPw(); location.reload(); }
+
+function esc(s) {
+  return (s == null ? "" : String(s)).replace(/[&<>"]/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+  });
+}
+
+// ===== 이름 검색 (입력 즉시 필터) =====
+document.getElementById("searchBox").addEventListener("input", function () {
+  SEARCH = this.value;
+  document.getElementById("searchWrap").classList.toggle("has", !!this.value);
+  renderList();
+});
+document.getElementById("searchClear").addEventListener("click", function () {
+  var box = document.getElementById("searchBox");
+  box.value = ""; SEARCH = "";
+  document.getElementById("searchWrap").classList.remove("has");
+  renderList();
+  box.focus();
+});
+
+document.getElementById("refreshBtn").addEventListener("click", reload);
+document.getElementById("logoutBtn").addEventListener("click", logout);
+</script>
+</body>
+</html>

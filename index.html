@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!-- 2026 생성형 AI(LLM) 1일 집중 특강(상주) 홍보·신청 단일 페이지 사이트 — GitHub Pages 공개용 -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>생성형 AI(LLM), 하루 만에 일에 쓰는 법 — 1일 집중 특강 신청</title>
+<meta name="description" content="생성형 AI(LLM), 하루 만에 일에 쓰는 법 — 1일 집중 특강. 2026년 8월 12일(수) 상주. AI를 업무에 도입하고자 하시는 분 누구나, 선착순 15명." />
+<meta property="og:title" content="생성형 AI(LLM), 하루 만에 일에 쓰는 법 — 1일 집중 특강" />
+<meta property="og:description" content="2026년 8월 12일(수) 09:00–17:00 상주. 오전 AI 기본기, 오후 업무 자동화 실습. 선착순 15명." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --isidor-primary:#800000;
+  --isidor-secondary:#9fa0a0;
+  --isidor-accent:#ffab40;
+  --primary:var(--isidor-primary);
+  --secondary:var(--isidor-secondary);
+  --accent:var(--isidor-accent);
+  --ink:#222;
+  --bg:#ffffff;
+  --soft:#faf6f6;
+  --line:#e7e1e1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--primary);text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+h2.sec{font-size:1.7rem;color:var(--primary);font-weight:900;margin-bottom:8px}
+.sub{color:var(--secondary);margin-bottom:28px;font-weight:500}
+@media(max-width:720px){section{padding:44px 0}h2.sec{font-size:1.45rem}}
+
+/* 헤더 */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav .brand img{width:196px;height:28px;object-fit:contain}
+.nav ul{display:flex;gap:22px;list-style:none}
+.nav ul a{color:var(--ink);font-weight:500;font-size:.95rem}
+.nav ul a:hover{color:var(--primary)}
+.nav .cta{background:var(--primary);color:#fff;padding:9px 16px;border-radius:8px;font-weight:700;font-size:.9rem}
+@media(max-width:720px){.nav ul{display:none}.nav .brand img{width:168px;height:24px}}
+
+/* 히어로 */
+.hero{background:linear-gradient(135deg,#800000 0%,#5e0000 100%);color:#fff;padding:72px 0 68px}
+.hero .logo-white{width:280px;height:40px;object-fit:contain;margin-bottom:26px}
+.hero .badge{display:inline-block;background:var(--accent);color:#3a2400;font-weight:700;font-size:.82rem;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+.hero .seat{display:none;background:#fff;color:var(--primary);font-weight:700;font-size:.82rem;padding:5px 12px;border-radius:999px;margin-left:8px}
+.hero h1{font-size:2.4rem;font-weight:900;line-height:1.28;letter-spacing:-.5px}
+.hero p.lead{margin-top:16px;font-size:1.1rem;opacity:.94;max-width:640px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero .meta span{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);padding:8px 14px;border-radius:8px;font-size:.92rem}
+.hero .btns{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:13px 24px;border-radius:9px;font-weight:700;font-size:1rem;cursor:pointer;border:none}
+.btn-accent{background:var(--accent);color:#3a2400}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+@media(max-width:720px){.hero{padding:56px 0 52px}.hero h1{font-size:1.75rem}.hero .logo-white{width:224px;height:32px}}
+
+/* 안내 카드 */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+@media(max-width:720px){.info-grid{grid-template-columns:1fr}}
+.info{border:1px solid var(--line);border-radius:12px;padding:22px;text-align:center;background:#fff}
+.info .big{font-size:1.35rem;font-weight:900;color:var(--primary);line-height:1.3}
+.info .lbl{color:var(--secondary);font-size:.9rem;margin-top:6px}
+.callout{border-left:4px solid var(--accent);background:#fffaf3;padding:18px 22px;border-radius:8px;margin-top:24px;font-size:.98rem}
+.callout strong{color:var(--primary)}
+
+/* 추천 대상 */
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:720px){.who{grid-template-columns:1fr}}
+.who .item{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--soft)}
+.who .item strong{display:block;color:var(--primary);font-size:1.02rem;margin-bottom:8px}
+.who .item p{font-size:.93rem;color:#555}
+
+/* 커리큘럼 카드 */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:720px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:14px;padding:26px;background:var(--soft)}
+.card .tag{display:inline-block;background:var(--primary);color:#fff;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:6px;margin-bottom:12px}
+.card h3{font-size:1.25rem;color:var(--primary);font-weight:800;margin-bottom:4px}
+.card .time{font-weight:700;color:var(--secondary);font-size:.92rem;margin-bottom:10px}
+.card ul{margin:14px 0 0 0;padding-left:18px}
+.card ul li{margin:6px 0;font-size:.95rem}
+
+/* 폼 */
+#apply{background:var(--soft)}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px;max-width:640px;margin:0 auto}
+@media(max-width:720px){.form-card{padding:24px 18px}}
+.form-row{margin-bottom:18px}
+.form-row label{display:block;font-weight:700;font-size:.92rem;margin-bottom:6px}
+.form-row .req{color:var(--primary)}
+.form-row input,.form-row textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:9px;font-size:1rem;font-family:inherit;background:#fff}
+.form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(128,0,0,.08)}
+.form-note{font-size:.85rem;color:var(--secondary);margin-top:6px}
+.radio-group{display:flex;flex-direction:column;gap:8px}
+.radio-group label{display:flex;align-items:center;gap:9px;font-weight:500;font-size:.96rem;cursor:pointer;border:1px solid var(--line);border-radius:9px;padding:11px 14px;margin:0}
+.radio-group input{width:18px;height:18px;flex:none;accent-color:var(--primary)}
+.consent{background:#faf6f6;border:1px solid var(--line);border-radius:9px;padding:14px 16px;margin-bottom:18px}
+.consent .ctitle{font-weight:700;font-size:.92rem;margin-bottom:8px}
+.consent table{width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:10px}
+.consent th,.consent td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.consent th{background:#fff;color:var(--primary);font-weight:700;white-space:nowrap;width:30%}
+.consent .cnote{font-size:.8rem;color:var(--secondary);margin-bottom:10px}
+.consent .cagree{display:flex;align-items:flex-start;gap:8px;font-size:.9rem;font-weight:700;cursor:pointer}
+.consent .cagree input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--primary)}
+.form-submit{width:100%;padding:15px;font-size:1.05rem;background:var(--primary);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer}
+.form-submit:hover{background:#6a0000}
+.form-status{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.95rem;display:none}
+.form-status.ok{display:block;background:#eef8ee;color:#1f7a1f;border:1px solid #bfe3bf}
+.form-status.err{display:block;background:#fdecec;color:#b03030;border:1px solid #f0c2c2}
+.form-status.wait{display:block;background:#fff4e2;color:#8a5a00;border:1px solid #f0d9ab}
+
+/* 푸터 */
+footer{background:#2a1414;color:#e9dede;padding:46px 0;font-size:.9rem}
+footer .frow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}
+footer .logo-white{width:210px;height:30px;object-fit:contain;opacity:.95}
+footer a{color:var(--accent)}
+
+/* 맨 위로 버튼 */
+#toTop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border:none;border-radius:50%;
+  background:var(--primary);color:#fff;font-size:20px;line-height:1;cursor:pointer;z-index:60;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+#toTop.show{opacity:.92;visibility:visible}
+#toTop:hover{opacity:1;background:#6a0000}
+@media(max-width:720px){#toTop{right:16px;bottom:16px;width:42px;height:42px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><a href="https://isidor.kr" target="_blank" rel="noopener"><img src="assets/isidor-logo-main.png" alt="이시도르 지속가능연구소" /></a></div>
+    <ul>
+      <li><a href="#about">특강 안내</a></li>
+      <li><a href="#who">추천 대상</a></li>
+      <li><a href="#curriculum">커리큘럼</a></li>
+      <li><a href="#bring">준비물</a></li>
+    </ul>
+    <a class="cta" href="#apply">신청하기</a>
+  </div>
+</header>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="wrap">
+    <img class="logo-white" src="assets/isidor-logo-white.png" alt="이시도르 지속가능연구소" />
+    <div>
+      <span class="badge">1일 집중 특강 · 선착순 15명</span>
+      <span class="seat" id="seatBadge"></span>
+    </div>
+    <h1>생성형 AI(LLM),<br />하루 만에 일에 쓰는 법</h1>
+    <p class="lead">이시도르 지속가능연구소가 진행하는 하루 완성 실습 특강입니다. 오전에는 클로드(Claude) 기본기를 다지고, 오후에는 내 업무를 직접 자동화합니다. AI를 업무에 도입하고자 하시는 분 누구나 참여할 수 있는 과정입니다.</p>
+    <div class="meta">
+      <span>2026년 8월 12일(수) 09:00–17:00</span>
+      <span>상주 (세부 장소 추후 안내)</span>
+      <span>선착순 15명 · 정원 도달 시 대기자 등록</span>
+      <span>개인 노트북 + 충전기 지참</span>
+    </div>
+    <div class="btns">
+      <a class="btn btn-accent" href="#apply">지금 신청하기</a>
+      <a class="btn btn-ghost" href="#curriculum">커리큘럼 보기</a>
+    </div>
+  </div>
+</div>
+
+<!-- 특강 안내 -->
+<section id="about">
+  <div class="wrap">
+    <h2 class="sec">특강 안내</h2>
+    <p class="sub">하루 동안 이론 최소·실습 중심으로 진행합니다.</p>
+    <div class="info-grid">
+      <div class="info"><div class="big">8월 12일(수)</div><div class="lbl">2026년 · 09:00–17:00</div></div>
+      <div class="info"><div class="big">상주</div><div class="lbl">세부 장소는 신청자에게 추후 안내</div></div>
+      <div class="info"><div class="big">누구나</div><div class="lbl">AI를 업무에 도입하고자 하시는 분</div></div>
+      <div class="info"><div class="big">종일 실습</div><div class="lbl">본인 업무 문서로 직접 실습</div></div>
+      <div class="info"><div class="big">선착순 15명</div><div class="lbl">정원 도달 시 자동 대기자 등록</div></div>
+      <div class="info"><div class="big">노트북 + 충전기</div><div class="lbl">반드시 지참 (아래 준비물 안내 참조)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 추천 대상 -->
+<section id="who" style="background:var(--soft)">
+  <div class="wrap">
+    <h2 class="sec">이런 분께 권합니다</h2>
+    <p class="sub">AI 지식이 전혀 없어도 참여할 수 있습니다.</p>
+    <div class="who">
+      <div class="item">
+        <strong>문서 작업에 시간을 빼앗기고 있는 분</strong>
+        <p>보고서·공문·안내문 작성에 하루의 절반을 쓰고 있다면, AI로 그 시간을 줄이는 방법을 배웁니다.</p>
+      </div>
+      <div class="item">
+        <strong>AI를 써 봤지만 업무에는 못 쓰고 있는 분</strong>
+        <p>생성형 AI를 열어는 봤지만 검색 대용에 그쳤다면, 실제 업무 문서에 적용하는 요령을 익힙니다.</p>
+      </div>
+      <div class="item">
+        <strong>반복되는 보고서·안내문 작업을 줄이고 싶은 분</strong>
+        <p>매달 같은 형식으로 만드는 문서가 있다면, 반복 업무를 자동화하는 나만의 방법을 만들어 갑니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 커리큘럼 -->
+<section id="curriculum">
+  <div class="wrap">
+    <h2 class="sec">하루 커리큘럼</h2>
+    <p class="sub">오전에 기본기를 다지고, 오후에 내 업무에 바로 적용합니다. 점심 시간 12:00–13:00.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">오전 09:00–12:00</span>
+        <h3>AI 기본기 다지기</h3>
+        <ul>
+          <li>클로드(Claude), 무엇을 할 수 있는가</li>
+          <li>원하는 답을 얻는 프롬프트 작성법</li>
+          <li>문서 요약·초안·공문 작성 실습</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">오후 13:00–17:00</span>
+        <h3>내 업무 자동화하기</h3>
+        <ul>
+          <li>한글·PDF·엑셀 파일 분석하기</li>
+          <li>보고서·안내문 반복 업무 줄이기</li>
+          <li>바로 쓰는 나만의 AI 비서 만들기</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 준비물 강조 -->
+<section id="bring" style="background:var(--soft);padding-top:40px;padding-bottom:40px">
+  <div class="wrap">
+    <h2 class="sec">준비물 안내</h2>
+    <div class="callout">
+      <strong>개인 노트북과 충전기를 반드시 지참해 주세요.</strong><br />
+      오전부터 오후까지 종일 실습으로 진행되어 배터리만으로는 부족합니다. 충전기를 꼭 함께 챙겨 오시기 바랍니다. 평소 업무에 쓰는 노트북을 가져오시면 본인 업무 문서로 바로 실습할 수 있습니다.
+    </div>
+  </div>
+</section>
+
+<!-- 신청 폼 -->
+<section id="apply">
+  <div class="wrap">
+    <h2 class="sec" style="text-align:center">특강 신청</h2>
+    <p class="sub" style="text-align:center">아래 양식을 제출하면 입력하신 이메일로 접수 확인 메일이 발송됩니다. 참석이 확정되면 확정 안내 메일을 다시 보내드립니다.</p>
+    <form class="form-card" id="applyForm">
+      <div class="form-row">
+        <label>성명 <span class="req">*</span></label>
+        <input type="text" name="성명" required placeholder="홍길동" />
+      </div>
+      <div class="form-row">
+        <label>소속 기관 <span class="req">*</span></label>
+        <input type="text" name="소속" required placeholder="○○기관·○○회사" />
+      </div>
+      <div class="form-row">
+        <label>직위 (선택)</label>
+        <input type="text" name="직위" placeholder="예: 팀장, 대표" />
+      </div>
+      <div class="form-row">
+        <label>이메일 <span class="req">*</span></label>
+        <input type="email" name="이메일" required placeholder="name@example.com" />
+        <div class="form-note">접수 확인·참석 확정 안내가 이 주소로 발송됩니다.</div>
+      </div>
+      <div class="form-row">
+        <label>연락처 <span class="req">*</span></label>
+        <input type="tel" name="연락처" required placeholder="010-0000-0000" />
+      </div>
+      <div class="form-row">
+        <label>생성형 AI 사용 경험 <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="AI사용경험" value="처음이다" required /> 처음이다</label>
+          <label><input type="radio" name="AI사용경험" value="써 본 적 있다" /> 써 본 적 있다</label>
+          <label><input type="radio" name="AI사용경험" value="업무에 자주 쓴다" /> 업무에 자주 쓴다</label>
+        </div>
+        <div class="form-note">실습 난이도 조절을 위해 여쭙습니다. 경험이 없어도 참여할 수 있습니다.</div>
+      </div>
+      <div class="form-row">
+        <label>문의사항 (선택)</label>
+        <textarea name="문의" rows="3" placeholder="궁금한 점을 적어주세요"></textarea>
+      </div>
+      <div class="consent">
+        <div class="ctitle">개인정보 수집·이용 동의 <span class="req">*</span></div>
+        <table>
+          <tbody>
+            <tr><th>수집 항목</th><td>성명, 소속 기관, 직위, 이메일, 연락처, 생성형 AI 사용 경험 (문의사항 입력 시 해당 내용)</td></tr>
+            <tr><th>수집·이용 목적</th><td>특강 신청 접수·참석 확정 안내, 교육 운영·장소 안내</td></tr>
+            <tr><th>보유·이용 기간</th><td>교육 종료 후 1년간 보관 후 파기 (관련 법령에 따라 보존이 필요한 경우 해당 기간까지)</td></tr>
+          </tbody>
+        </table>
+        <div class="cnote">동의를 거부하실 수 있으나, 거부 시 특강 신청 접수가 불가능합니다.</div>
+        <label class="cagree">
+          <input type="checkbox" name="개인정보동의" value="동의" required />
+          <span>위 개인정보 수집·이용에 동의합니다.</span>
+        </label>
+      </div>
+      <button type="submit" class="form-submit">신청서 제출</button>
+      <div class="form-status" id="formStatus"></div>
+      <p class="form-note" style="margin-top:14px;text-align:center">제출 시 입력하신 정보는 접수 처리 목적으로만 사용됩니다.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap frow">
+    <div>
+      <a href="https://isidor.kr" target="_blank" rel="noopener"><img class="logo-white" src="assets/isidor-logo-white.png" alt="이시도르 지속가능연구소" /></a>
+      <p style="margin-top:12px">주최 이시도르 지속가능연구소<br />문의 <a href="mailto:isidor.yu@gmail.com">isidor.yu@gmail.com</a></p>
+    </div>
+    <div style="text-align:right;opacity:.8">
+      <p>생성형 AI(LLM), 하루 만에 일에 쓰는 법 — 1일 집중 특강</p>
+      <p>2026년 8월 12일(수) · 상주</p>
+      <p style="margin-top:8px;font-size:.82rem">&copy; 2026 Isidor Sustainability Research Institute</p>
+      <p style="margin-top:6px;font-size:.82rem"><a id="adminLink" href="#" target="_blank" rel="noopener" style="color:#9b8484">관리자</a></p>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" type="button" aria-label="맨 위로 올라가기" title="맨 위로">↑</button>
+
+<script>
+// --- 맨 위로 버튼 ---
+const toTop = document.getElementById("toTop");
+window.addEventListener("scroll", function () {
+  if (window.scrollY > 400) toTop.classList.add("show");
+  else toTop.classList.remove("show");
+});
+toTop.addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+
+<script>
+// ===== 설정값 — 배포 후 실제 값으로 교체하세요 =====
+// Google Apps Script 웹앱 배포 URL (apps-script/Code.gs 배포 후 발급되는 .../exec 주소)
+const API_URL = "https://script.google.com/macros/s/REPLACE_WITH_DEPLOYMENT_ID/exec";
+const CONTACT_EMAIL = "isidor.yu@gmail.com";
+// ====================================================
+
+const API_READY = API_URL && !API_URL.includes("REPLACE_WITH");
+
+// --- 푸터 관리자 링크 (Apps Script 관리자 페이지로 연결) ---
+if (API_READY) document.getElementById("adminLink").href = API_URL + "?page=admin";
+else document.getElementById("adminLink").parentElement.style.display = "none";
+
+// --- 잔여석 배지 (공개 현황 조회 — API 미설정 시 표시하지 않음) ---
+if (API_READY) {
+  fetch(API_URL + "?action=status")
+    .then(function (r) { return r.json(); })
+    .then(function (j) {
+      if (!j || !j.ok) return;
+      var b = document.getElementById("seatBadge");
+      if (j.full) b.textContent = "정원 마감 · 대기자 접수 중";
+      else b.textContent = "잔여 " + j.remaining + "석";
+      b.style.display = "inline-block";
+    })
+    .catch(function () {});
+}
+
+// --- 신청 폼 처리 ---
+const form = document.getElementById("applyForm");
+const statusEl = document.getElementById("formStatus");
+
+// --- 연락처 입력 자동 포맷 (010-0000-0000) ---
+(function () {
+  const phoneInput = form.querySelector('input[name="연락처"]');
+  if (!phoneInput) return;
+  function fmtPhone(v) {
+    let d = (v || "").replace(/\D/g, "");
+    if (d.length === 10 && d.charAt(0) === "1") d = "0" + d; // 1058307048 → 01058307048
+    d = d.slice(0, 11);
+    if (d.length < 4) return d;
+    if (d.length < 8) return d.replace(/(\d{3})(\d+)/, "$1-$2");
+    return d.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3");
+  }
+  phoneInput.addEventListener("input", function () {
+    this.value = fmtPhone(this.value);
+  });
+})();
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.action = "apply";
+
+  statusEl.className = "form-status";
+  statusEl.style.display = "block";
+  statusEl.textContent = "제출 중입니다…";
+
+  if (!API_READY) {
+    // 접수 시스템 미연결 시 mailto 폴백 — 메일 프로그램에 신청 내용을 채워 연다
+    var subject = "[LLM 특강 신청] " + (data["성명"] || "");
+    var body = "생성형 AI(LLM) 1일 집중 특강(2026-08-12, 상주) 신청서\n\n"
+      + "성명: " + (data["성명"] || "") + "\n"
+      + "소속 기관: " + (data["소속"] || "") + "\n"
+      + "직위: " + (data["직위"] || "") + "\n"
+      + "이메일: " + (data["이메일"] || "") + "\n"
+      + "연락처: " + (data["연락처"] || "") + "\n"
+      + "생성형 AI 사용 경험: " + (data["AI사용경험"] || "") + "\n"
+      + "문의사항: " + (data["문의"] || "") + "\n"
+      + "개인정보 수집·이용 동의: " + (data["개인정보동의"] || "") + "\n";
+    window.location.href = "mailto:" + CONTACT_EMAIL
+      + "?subject=" + encodeURIComponent(subject)
+      + "&body=" + encodeURIComponent(body);
+    statusEl.className = "form-status err";
+    statusEl.innerHTML = '접수 시스템 준비 중입니다. 메일 프로그램이 열리면 내용을 확인 후 그대로 보내주세요. 열리지 않으면 <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a> 로 직접 신청해 주세요.';
+    return;
+  }
+
+  try {
+    // Content-Type을 지정하지 않아 text/plain으로 전송 → CORS preflight 회피 (Apps Script 호환)
+    const res = await fetch(API_URL, { method: "POST", body: JSON.stringify(data) });
+    const j = await res.json();
+    if (j.ok && j.waitlisted) {
+      // 정원 도달 — 대기자로 접수됨
+      statusEl.className = "form-status wait";
+      statusEl.textContent = "현재 정원(15명)이 마감되어 대기자로 등록되었습니다. 결원이 생기면 등록 순서대로 참석 확정 안내를 드립니다. 입력하신 이메일로 대기 안내 메일이 발송됩니다.";
+      form.reset();
+    } else if (j.ok) {
+      statusEl.className = "form-status ok";
+      statusEl.textContent = "신청이 접수되었습니다. 입력하신 이메일로 확인 메일이 발송됩니다.";
+      form.reset();
+    } else {
+      throw new Error(j.error || "server");
+    }
+  } catch (err) {
+    statusEl.className = "form-status err";
+    statusEl.innerHTML = '제출에 실패했습니다. 잠시 후 다시 시도하시거나 <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a> 로 직접 신청해 주세요.';
+  }
+});
+</script>
+</body>
+</html>
