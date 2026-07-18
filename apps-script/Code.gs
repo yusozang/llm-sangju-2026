@@ -4,7 +4,7 @@
 // 관리자 비밀번호는 코드에 적지 않고 Apps Script의 Script Properties(비공개 설정값)에 저장한다.
 // 키: ADMIN_PASSWORD, 값: isidor-llm-2026  → 프로젝트 설정 > 스크립트 속성에서 입력 (SETUP-backend.md 참조)
 const CAPACITY = 15;                               // 정원 (참석확정 인원 기준)
-const FROM_NAME = '이시도르 지속가능연구소';        // 발신자 표시 이름 (실제 발신 주소는 스크립트 소유 계정 = isidor.yu@gmail.com)
+const FROM_NAME = '유소장닷컴';        // 발신자 표시 이름 (실제 발신 주소는 스크립트 소유 계정 = isidor.yu@gmail.com)
 const CONTACT = 'isidor.yu@gmail.com';             // 신청자 안내 메일의 문의처 + 문의사항 알림 수신
 const COURSE_TITLE = '생성형 AI(LLM), 하루 만에 일에 쓰는 법 — 1일 집중 특강';
 const COURSE_DATE = '2026년 8월 12일(수) 09:00–17:00';
@@ -289,7 +289,7 @@ function applyBody_(name) {
     + courseInfoBlock_() + '\n'
     + '※ 종일 실습으로 진행되어 노트북 배터리만으로는 부족합니다.\n'
     + '   개인 노트북과 함께 충전기를 반드시 챙겨 오시기 바랍니다.\n\n'
-    + '문의: ' + CONTACT + '\n이시도르 지속가능연구소';
+    + '문의: ' + CONTACT + '\n유소장.컴';
 }
 
 function waitBody_(name) {
@@ -298,7 +298,7 @@ function waitBody_(name) {
     + '현재 정원(' + CAPACITY + '명)이 마감되어 대기자로 등록되었습니다.\n'
     + '결원이 생기면 등록 순서대로 참석 확정 안내를 드리겠습니다.\n\n'
     + courseInfoBlock_() + '\n'
-    + '문의: ' + CONTACT + '\n이시도르 지속가능연구소';
+    + '문의: ' + CONTACT + '\n유소장.컴';
 }
 
 function confirmBody_(name) {
@@ -309,5 +309,5 @@ function confirmBody_(name) {
     + '※ 종일 실습으로 진행되어 노트북 배터리만으로는 부족합니다.\n'
     + '   개인 노트북과 함께 충전기를 반드시 챙겨 오시기 바랍니다.\n'
     + '※ 세부 장소는 교육일 전 별도 안내드립니다.\n\n'
-    + '문의: ' + CONTACT + '\n이시도르 지속가능연구소';
+    + '문의: ' + CONTACT + '\n유소장.컴';
 }

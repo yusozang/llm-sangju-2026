@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
 <style>
 :root{
-  --isidor-primary:#800000;
+  --isidor-primary:#d96b00;
   --isidor-secondary:#9fa0a0;
   --isidor-accent:#ffab40;
   --primary:var(--isidor-primary);
@@ -39,16 +39,16 @@ h2.sec{font-size:1.7rem;color:var(--primary);font-weight:900;margin-bottom:8px}
 /* 헤더 */
 header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
-.nav .brand img{width:196px;height:28px;object-fit:contain}
+.nav .brand img{width:110px;height:44px;object-fit:contain}
 .nav ul{display:flex;gap:22px;list-style:none}
 .nav ul a{color:var(--ink);font-weight:500;font-size:.95rem}
 .nav ul a:hover{color:var(--primary)}
 .nav .cta{background:var(--primary);color:#fff;padding:9px 16px;border-radius:8px;font-weight:700;font-size:.9rem}
-@media(max-width:720px){.nav ul{display:none}.nav .brand img{width:168px;height:24px}}
+@media(max-width:720px){.nav ul{display:none}.nav .brand img{width:95px;height:38px}}
 
 /* 히어로 */
-.hero{background:linear-gradient(135deg,#800000 0%,#5e0000 100%);color:#fff;padding:72px 0 68px}
-.hero .logo-white{width:280px;height:40px;object-fit:contain;margin-bottom:26px}
+.hero{background:linear-gradient(135deg,#d96b00 0%,#a85200 100%);color:#fff;padding:72px 0 68px}
+.hero .logo-white{width:224px;height:90px;object-fit:contain;margin-bottom:20px}
 .hero .badge{display:inline-block;background:var(--accent);color:#3a2400;font-weight:700;font-size:.82rem;padding:5px 12px;border-radius:999px;margin-bottom:18px}
 .hero .seat{display:none;background:#fff;color:var(--primary);font-weight:700;font-size:.82rem;padding:5px 12px;border-radius:999px;margin-left:8px}
 .hero h1{font-size:2.4rem;font-weight:900;line-height:1.28;letter-spacing:-.5px}
@@ -59,7 +59,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdro
 .btn{display:inline-block;padding:13px 24px;border-radius:9px;font-weight:700;font-size:1rem;cursor:pointer;border:none}
 .btn-accent{background:var(--accent);color:#3a2400}
 .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
-@media(max-width:720px){.hero{padding:56px 0 52px}.hero h1{font-size:1.75rem}.hero .logo-white{width:224px;height:32px}}
+@media(max-width:720px){.hero{padding:56px 0 52px}.hero h1{font-size:1.75rem}.hero .logo-white{width:180px;height:72px}}
 
 /* 안내 카드 */
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
@@ -109,7 +109,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdro
 .consent .cagree{display:flex;align-items:flex-start;gap:8px;font-size:.9rem;font-weight:700;cursor:pointer}
 .consent .cagree input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--primary)}
 .form-submit{width:100%;padding:15px;font-size:1.05rem;background:var(--primary);color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer}
-.form-submit:hover{background:#6a0000}
+.form-submit:hover{background:#a85200}
 .form-status{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.95rem;display:none}
 .form-status.ok{display:block;background:#eef8ee;color:#1f7a1f;border:1px solid #bfe3bf}
 .form-status.err{display:block;background:#fdecec;color:#b03030;border:1px solid #f0c2c2}
@@ -118,7 +118,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdro
 /* 푸터 */
 footer{background:#2a1414;color:#e9dede;padding:46px 0;font-size:.9rem}
 footer .frow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}
-footer .logo-white{width:210px;height:30px;object-fit:contain;opacity:.95}
+footer .logo-white{width:150px;height:60px;object-fit:contain;opacity:.95}
 footer a{color:var(--accent)}
 
 /* 맨 위로 버튼 */
@@ -126,7 +126,7 @@ footer a{color:var(--accent)}
   background:var(--primary);color:#fff;font-size:20px;line-height:1;cursor:pointer;z-index:60;
   box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
 #toTop.show{opacity:.92;visibility:visible}
-#toTop:hover{opacity:1;background:#6a0000}
+#toTop:hover{opacity:1;background:#a85200}
 @media(max-width:720px){#toTop{right:16px;bottom:16px;width:42px;height:42px}}
 </style>
 </head>
@@ -134,7 +134,7 @@ footer a{color:var(--accent)}
 
 <header>
   <div class="wrap nav">
-    <div class="brand"><a href="https://isidor.kr" target="_blank" rel="noopener"><img src="assets/isidor-logo-main.png" alt="이시도르 지속가능연구소" /></a></div>
+    <div class="brand"><img src="assets/yusojang-logo-h.png" alt="유소장.컴" /></div>
     <ul>
       <li><a href="#about">특강 안내</a></li>
       <li><a href="#who">추천 대상</a></li>
@@ -148,13 +148,13 @@ footer a{color:var(--accent)}
 <!-- 히어로 -->
 <div class="hero">
   <div class="wrap">
-    <img class="logo-white" src="assets/isidor-logo-white.png" alt="이시도르 지속가능연구소" />
+    <img class="logo-white" src="assets/yusojang-logo-h-white.png" alt="유소장.컴" />
     <div>
       <span class="badge">1일 집중 특강 · 선착순 15명</span>
       <span class="seat" id="seatBadge"></span>
     </div>
     <h1>생성형 AI(LLM),<br />하루 만에 일에 쓰는 법</h1>
-    <p class="lead">이시도르 지속가능연구소가 진행하는 하루 완성 실습 특강입니다. 오전에는 클로드(Claude) 기본기를 다지고, 오후에는 내 업무를 직접 자동화합니다. AI를 업무에 도입하고자 하시는 분 누구나 참여할 수 있는 과정입니다.</p>
+    <p class="lead">유소장.컴이 진행하는 하루 완성 실습 특강입니다. 오전에는 클로드(Claude) 기본기를 다지고, 오후에는 내 업무를 직접 자동화합니다. AI를 업무에 도입하고자 하시는 분 누구나 참여할 수 있는 과정입니다.</p>
     <div class="meta">
       <span>2026년 8월 12일(수) 09:00–17:00</span>
       <span>상주 (세부 장소 추후 안내)</span>
@@ -310,8 +310,8 @@ footer a{color:var(--accent)}
 <footer>
   <div class="wrap frow">
     <div>
-      <a href="https://isidor.kr" target="_blank" rel="noopener"><img class="logo-white" src="assets/isidor-logo-white.png" alt="이시도르 지속가능연구소" /></a>
-      <p style="margin-top:12px">주최 이시도르 지속가능연구소<br />문의 <a href="mailto:isidor.yu@gmail.com">isidor.yu@gmail.com</a></p>
+      <img class="logo-white" src="assets/yusojang-logo-h-white.png" alt="유소장.컴" />
+      <p style="margin-top:12px">주최 유소장.컴<br />문의 <a href="mailto:isidor.yu@gmail.com">isidor.yu@gmail.com</a></p>
     </div>
     <div style="text-align:right;opacity:.8">
       <p>생성형 AI(LLM), 하루 만에 일에 쓰는 법 — 1일 집중 특강</p>
