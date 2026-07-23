@@ -264,6 +264,7 @@ function courseInfoBlock_() {
   return '· 과정: ' + COURSE_TITLE + '\n'
     + '· 일시: ' + COURSE_DATE + '\n'
     + '· 장소: ' + COURSE_PLACE + '\n'
+    + '· 참가비: 15만원/인 (7·8월 론칭 DC 50% → 75,000원/인)\n'
     + '· 준비물: 개인 노트북 + 충전기 (반드시 지참)\n';
 }
 
