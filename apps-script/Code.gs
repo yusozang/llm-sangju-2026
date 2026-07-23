@@ -264,7 +264,7 @@ function courseInfoBlock_() {
   return '· 과정: ' + COURSE_TITLE + '\n'
     + '· 일시: ' + COURSE_DATE + '\n'
     + '· 장소: ' + COURSE_PLACE + '\n'
-    + '· 참가비: 82,500원/인 (VAT 포함) — 정가 165,000원, 7·8월 론칭 DC 50%\n'
+    + '· 참가비: 정가 165,000원 → 82,500원/인 (VAT 포함, 7·8월 론칭 DC 50%)\n'
     + '· 준비물: 개인 노트북 + 충전기 (반드시 지참)\n';
 }
 
